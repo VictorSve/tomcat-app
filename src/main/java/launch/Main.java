@@ -1,5 +1,8 @@
 package launch;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -56,6 +59,8 @@ public class Main {
         }
         StandardContext ctx = (StandardContext) tomcat.addWebapp("", webContentFolder.getAbsolutePath());
         //Set execution independent of current thread context classloader (compatibility with exec:java mojo)
+
+
         ctx.setParentClassLoader(Main.class.getClassLoader());
 
         System.out.println("configuring app with basedir: " + webContentFolder.getAbsolutePath());
@@ -74,7 +79,6 @@ public class Main {
         }
         resources.addPreResources(resourceSet);
         ctx.setResources(resources);
-
         tomcat.start();
         tomcat.getServer().await();
     }

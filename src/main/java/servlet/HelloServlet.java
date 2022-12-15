@@ -1,5 +1,7 @@
 package servlet;
 
+import calculator.Calculator;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -10,18 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(
-        name = "MyServlet", 
-        urlPatterns = {"/hello"}
+        "/hello"
     )
 public class HelloServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        ServletOutputStream out = resp.getOutputStream();
-        out.write("hello heroku".getBytes());
-        out.flush();
-        out.close();
+        System.out.println("Hello there!");
+        Calculator calculator = new Calculator();
+        System.out.println(calculator.getX());
     }
     
 }
